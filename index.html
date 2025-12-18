@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculator - By Nayef Javaid</title>
+  
+  <!-- Embedded CSS -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Roboto Condensed", sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body{
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: linear-gradient(45deg, #0a0a0a, #3a4452);
+      padding-top: 20px;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .calculator{
+      border: 1px solid #717377;
+      padding: 20px;
+      border-radius: 16px;
+      background: transparent;
+      box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+    }
+
+    input{
+      width: 320px;
+      border: none;
+      padding: 24px;
+      margin: 10px;
+      background: transparent;
+      box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
+      font-size: 40px;
+      text-align: right;
+      cursor: pointer;
+      color: white;
+    }
+
+    input::placeholder{
+      color: white;
+    }
+
+    button{
+      border: none;
+      width: 60px;
+      height: 60px;
+      margin: 10px;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      font-size: 20px;
+      box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+    }
+
+    .equalbtn{
+      background-color: #fb7c14;
+    }
+
+    .operator{
+      color: #87CEEB;
+    }
+
+    .delop{
+      color: #FF0000;
+    }
+  </style>
+</head>
+<body>
+  <h1> Calculator - By Nayef Javaid </h1>
+
+  <div class="calculator">
+    <input type="text" placeholder="0" id="inputbox"> 
+
+    <div>
+      <button style="color:#00FF00;">AC</button>
+      <button class="delop">DEL</button>
+      <button class="operator">%</button>
+      <button class="operator">/</button>
+    </div>
+
+    <div>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button class="operator">*</button> 
+    </div>
+
+    <div>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button class="operator">-</button>
+    </div>
+
+    <div>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button class="operator">+</button>
+    </div>
+
+    <div>
+      <button>00</button>
+      <button>0</button>
+      <button>.</button>
+      <button class="equalbtn">=</button>
+    </div>
+  </div>
+
+  <!-- Embedded JavaScript -->
+  <script>
+    let input = document.getElementById('inputbox');
+    let buttons = document.querySelectorAll('button');
+
+    let string = "";
+    let arr = Array.from(buttons);
+
+    arr.forEach(button => {
+        button.addEventListener('click', (e) => {
+            if(e.target.innerHTML == '='){
+                try {
+                    string = eval(string);
+                } catch {
+                    string = "Error";
+                }
+                input.value = string;
+            }
+            else if(e.target.innerHTML == 'AC'){
+                string = "";
+                input.value = ""; // clear input box
+            }
+            else if(e.target.innerHTML == 'DEL'){
+                string = string.substring(0, string.length-1);
+                input.value = string;
+            }
+            else{
+                string += e.target.innerHTML;
+                input.value = string;
+            }
+        });
+    });
+  </script>
+</body>
+</html>
